@@ -54,8 +54,8 @@ int main(int argc, char **argv) {
         case 5:
             labwork.labwork5_CPU();
             labwork.saveOutputImage("labwork5-cpu-out.jpg");
-            labwork.labwork5_GPU();
-            labwork.saveOutputImage("labwork5-gpu-out.jpg");
+            // labwork.labwork5_GPU();
+            // labwork.saveOutputImage("labwork5-gpu-out.jpg");
             break;
         case 6:
             labwork.labwork6_GPU();
@@ -188,10 +188,10 @@ void Labwork::labwork5_CPU() {
 			int sumB = 0;
 			for (int j = 0; j < 7; j++) {
 				for (int i = 0; i < 7; i++) {
-					int pos = (col - i - 3) + (row - j - 3) * inputImage->width;
-					sumR += inputImage->buffer[pos]*gaussianBlur[j][i];
-					sumG += inputImage->buffer[pos+1]*gaussianBlur[j][i];
-					sumB += inputImage->buffer[pos+2]*gaussianBlur[j][i];
+					int pos = (col + (i - 3)) + (row + (j - 3)) * inputImage->width;
+					sumR += inputImage->buffer[pos * 3] * gaussianBlur[j][i];
+					sumG += inputImage->buffer[pos * 3+1] * gaussianBlur[j][i];
+					sumB += inputImage->buffer[pos * 3+2] * gaussianBlur[j][i];
 				}
 			}
 			sumR /= 1003;
@@ -203,6 +203,7 @@ void Labwork::labwork5_CPU() {
 			outputImage[pos * 3 + 2] = sumB;
 		}
         }
+	printf("finished labwork5 CPU\n");
 }
 
 void Labwork::labwork5_GPU() {
