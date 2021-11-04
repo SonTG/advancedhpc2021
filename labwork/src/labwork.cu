@@ -54,8 +54,8 @@ int main(int argc, char **argv) {
         case 5:
             labwork.labwork5_CPU();
             labwork.saveOutputImage("labwork5-cpu-out.jpg");
-            // labwork.labwork5_GPU();
-            // labwork.saveOutputImage("labwork5-gpu-out.jpg");
+            labwork.labwork5_GPU();
+            labwork.saveOutputImage("labwork5-gpu-out.jpg");
             break;
         case 6:
             labwork.labwork6_GPU();
